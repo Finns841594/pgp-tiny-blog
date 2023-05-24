@@ -29,7 +29,7 @@ export const LabelDropdown = ({updateLabel, defaultLabel}:Props) => {
 
   return (
     <div className="flex flex-row items-center py-4">
-      <h3 className="text-2xl mr-4">Showing posts with label</h3>
+      <h3 className="text-2xl mr-4 text-violet-800">Showing posts with label</h3>
       <Dropdown> 
       <Dropdown.Button shadow color='secondary' css={{ tt: "capitalize" }}>{selectedLabel}</Dropdown.Button>
       <Dropdown.Menu aria-label="Dynamic Actions" items={menuItems} selectionMode="single" selectedKeys={selectedLabel} onAction={ (key:Key) => selectHandler(key)}>

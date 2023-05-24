@@ -7,6 +7,8 @@ import { PostsContext } from './PostsContext'
 import { useEffect, useState } from 'react'
 import { Post } from './types'
 import { getPosts } from './components/functions/async'
+import { Loading } from '@nextui-org/react';
+
 
 export default function Home() {
   const [posts, setPosts] = useState<Post[]>([])
@@ -28,8 +30,11 @@ export default function Home() {
             <AllPosts />
           </>
           ) : (
-          <p>Loading</p>
-          )}
+          <div className='lg:mt-96'>
+            <Loading size='xl' color='secondary'/>
+          </div>
+          )
+        }
       </main>
     </ PostsContext.Provider>
   )
