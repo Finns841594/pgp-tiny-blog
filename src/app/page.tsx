@@ -21,9 +21,15 @@ export default function Home() {
   
   return (
     <PostsContext.Provider value={{ posts, setPosts }}>
-      <main className="flex min-h-screen flex-col items-center p-24">
-        <MainHeader />
-        <AllPosts />
+      <main className="flex min-h-screen flex-col items-center px-24">
+        { posts.length > 0 ? (
+          <>
+            <MainHeader />
+            <AllPosts />
+          </>
+          ) : (
+          <p>Loading</p>
+          )}
       </main>
     </ PostsContext.Provider>
   )

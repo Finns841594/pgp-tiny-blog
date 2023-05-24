@@ -8,13 +8,13 @@ import { LabelDropdown } from "./LabelDropdown"
 import { PostsContext } from "../PostsContext"
 import { filterPostsByLabel } from "./functions/utilities"
 
-export const PostsByLabel = () => {
-  const [labelForPosts, setLabelForPosts] = useState<string>("History")
+interface Props {defaultLabel:string}
+
+export const PostsByLabel = ({defaultLabel}:Props) => {
+  const [labelForPosts, setLabelForPosts] = useState<string>(defaultLabel)
   const { posts, setPosts } = useContext(PostsContext)
 
   const initialPosts = filterPostsByLabel(posts, labelForPosts)
-  console.log('⭐️ initialPosts', labelForPosts, initialPosts)
-
   const [postsByLabel, setPostsByLabel] = useState<Post[]>(initialPosts)
 
   useEffect(() => {
@@ -22,17 +22,15 @@ export const PostsByLabel = () => {
   }, [labelForPosts])
 
   return (
-    <div>
+    <div className="w-256 my-10">
 
-      <LabelDropdown updateLabel={setLabelForPosts}/>
+      <LabelDropdown updateLabel={setLabelForPosts} defaultLabel={defaultLabel}/>
 
-      <h3>Posts with label {labelForPosts}: </h3>
-      <div className="grid grid-cols-3 gap-4">  
+      <div className="flex flex-row flex-wrap justify-start">  
         { postsByLabel.length > 0 ? (
           postsByLabel.map((post) => {
             return (
-              // eslint-disable-next-line react/jsx-key
-              <BlogPost post={post} />
+              <BlogPost key={post.id} post={post} />
             )
           })
           ) : (<p>no posts</p>)}
