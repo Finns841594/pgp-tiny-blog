@@ -1,37 +1,43 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Post } from "../types"
 import { BlogPost } from "./BlogPost"
-import { getPosts } from "./functions/async"
+import { getPosts, getPostsByLabel } from "./functions/async"
+import { LabelDropdown } from "./LabelDropdown"
+import { PostsContext } from "../PostsContext"
+import { filterPostsByLabel } from "./functions/utilities"
 
 export const PostsByLabel = () => {
-  const [postsByLabel, setPostsByLabel] = useState<Post[]>([])
+  const [labelForPosts, setLabelForPosts] = useState<string>("History")
+  const { posts, setPosts } = useContext(PostsContext)
+
+  const initialPosts = filterPostsByLabel(posts, labelForPosts)
+  console.log('⭐️ initialPosts', labelForPosts, initialPosts)
+
+  const [postsByLabel, setPostsByLabel] = useState<Post[]>(initialPosts)
 
   useEffect(() => {
-    getPosts().then((posts) => {
-      console.log('posts', posts)
-      setPostsByLabel(posts)
-      console.log('postsLength', postsByLabel.length)
-    }).catch((err) => {
-      console.log('err', err)
-    })
-  }, [])
+    setPostsByLabel(filterPostsByLabel(posts, labelForPosts))
+  }, [labelForPosts])
 
   return (
     <div>
-      <p>label 1</p>
-      { postsByLabel.length > 0 ? (
-        // show all posts with label 1
-        postsByLabel.map((post) => {
-          return (
-            // eslint-disable-next-line react/jsx-key
-            <BlogPost post={post} />
-          )
-        })
 
+      <LabelDropdown updateLabel={setLabelForPosts}/>
 
-        ) : (<p>no posts</p>)}
+      <h3>Posts with label {labelForPosts}: </h3>
+      <div className="grid grid-cols-3 gap-4">  
+        { postsByLabel.length > 0 ? (
+          postsByLabel.map((post) => {
+            return (
+              // eslint-disable-next-line react/jsx-key
+              <BlogPost post={post} />
+            )
+          })
+          ) : (<p>no posts</p>)}
+      </div>
+
     </div>
   )
 }
