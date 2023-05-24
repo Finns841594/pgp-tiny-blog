@@ -3,7 +3,6 @@
 import { useContext, useEffect, useState } from "react"
 import { Post } from "../types"
 import { BlogPost } from "./BlogPost"
-import { getPosts, getPostsByLabel } from "./functions/async"
 import { LabelDropdown } from "./LabelDropdown"
 import { PostsContext } from "../PostsContext"
 import { filterPostsByLabel } from "./functions/utilities"
@@ -12,7 +11,7 @@ interface Props {defaultLabel:string}
 
 export const PostsByLabel = ({defaultLabel}:Props) => {
   const [labelForPosts, setLabelForPosts] = useState<string>(defaultLabel)
-  const { posts, setPosts } = useContext(PostsContext)
+  const { posts } = useContext(PostsContext)
 
   const initialPosts = filterPostsByLabel(posts, labelForPosts)
   const [postsByLabel, setPostsByLabel] = useState<Post[]>(initialPosts)

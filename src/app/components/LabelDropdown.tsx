@@ -4,7 +4,6 @@ import { getAllLabels } from "./functions/utilities"
 import { Dropdown } from "@nextui-org/react";
 
 interface Props {updateLabel: (label:string) => void, defaultLabel:string}
-interface MenuItem {name:string, key:string}
 
 export const LabelDropdown = ({updateLabel, defaultLabel}:Props) => {
   const { posts } = useContext(PostsContext)

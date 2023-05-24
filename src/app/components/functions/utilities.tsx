@@ -18,7 +18,5 @@ export const filterPostsByLabel = (posts:Post[], label:string|number) => {
   }
   const loweredLabel = label.toLowerCase();
   const filteredPosts = posts.filter((post) => post.tags.includes(loweredLabel));
-  console.log('⭐️⭐️⭐️ filtering with label:', loweredLabel)
-  console.log('⭐️⭐️⭐️ filtered:', filteredPosts)
   return filteredPosts
 }
