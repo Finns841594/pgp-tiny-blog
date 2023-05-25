@@ -1,7 +1,6 @@
 import userIcon from 'public/userIcon.svg'
-import Imgae from 'next/image'
+import Image from 'next/image'
 import { Text } from "@nextui-org/react";
-
 
 export const MainHeader = () => {
   return (
@@ -16,7 +15,7 @@ export const MainHeader = () => {
           Tiny Blog
         </Text>
         <div className="flex flex-row items-center">
-          <Imgae priority src={userIcon} alt="user icon" className='h-7 w-7 mx-2' /> 
+          <Image priority src={userIcon} height={300} width={300} alt="user icon" className='h-7 w-7 mx-2' /> 
           <h3> login / register</h3>
         </div>
       </div>
