@@ -18,14 +18,14 @@ export const PostsByLabel = ({defaultLabel}:Props) => {
 
   useEffect(() => {
     setPostsByLabel(filterPostsByLabel(posts, labelForPosts))
-  }, [labelForPosts])
+  }, [labelForPosts, posts])
 
   return (
-    <div className="w-256 my-10">
+    <div className="w-96 md:w-256 my-10">
 
       <LabelDropdown updateLabel={setLabelForPosts} defaultLabel={defaultLabel}/>
 
-      <div className="flex flex-row flex-wrap justify-start">  
+      <div className="flex flex-row flex-wrap justify-start mx-2">  
         { postsByLabel.length > 0 ? (
           postsByLabel.map((post) => {
             return (

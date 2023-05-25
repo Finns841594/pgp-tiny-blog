@@ -1,5 +1,5 @@
 // get current host name
-// Update: method below is not working for the client side
+// Update: method below is not working for the client side, to get the current domain and port from server side code, you just don't specify the host and port in the fetch url, it will automatically get the current domain and port.
 // const host = window.location.hostname
 // const port = window.location.port
 

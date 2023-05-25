@@ -22,8 +22,8 @@ export default function Home() {
   
   return (
     // change the structure of Context.Provider to not wrap the entire app, use the advantage of server rendering
-    <PostsContext.Provider value={{ posts, setPosts }}>
       <main className="flex min-h-screen flex-col items-center px-24">
+        <PostsContext.Provider value={{ posts, setPosts }}>
         <MainHeader />
         { posts.length > 0 ? (
           <>
@@ -36,7 +36,7 @@ export default function Home() {
           </div>
           )
         }
+      </ PostsContext.Provider>
       </main>
-    </ PostsContext.Provider>
   )
 }
